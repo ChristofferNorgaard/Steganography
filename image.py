@@ -1,11 +1,6 @@
 from PIL import Image
 import easygui
 
-
-
-
-
-
 def encoder(EncodeString, ImageBytes):
     imagelist = list(ImageBytes)
     if(len(EncodeString) > (len(imagelist)/8)-8):
@@ -28,7 +23,6 @@ def encoder(EncodeString, ImageBytes):
 
     return imagelist
 
-
 def decoder(EncodedBytes):
     imagelist = list(EncodedBytes)
     content = [str(i)[-1:] for i in imagelist]
@@ -45,14 +39,11 @@ def decoder(EncodedBytes):
 
     return return_string
 
-
-
 def Encode_to_file( imageLocation, EncodeString, result_location):
     imageObject = Image.open(imageLocation)
     listOFrgb = encoder(EncodeString, imageObject.tobytes())
     newIMAGEbytes = bytes(listOFrgb)
     size = tuple(imageObject.size)
-    #print(type(size))
     new_img = Image.frombytes('RGB', size, newIMAGEbytes)
     new_img.save(result_location)
 
@@ -60,8 +51,6 @@ def DecodeFromFile( filelocation):
     img = Image.open(filelocation)
     secret = decoder(img.tobytes())
     return secret
-
-
     
 def GUIencode():
     print('Pick sample picture')
